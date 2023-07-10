@@ -59,5 +59,11 @@ function displayGameWinner(playerScore, computerScore) {
     }
 }
 
-
-
+// start a round of the game
+function startRound() {
+    let playerChoice = getPlayerChoice();
+    let computerChoice = getComputerChoice();
+    let playerWin = checkPlayerWin(playerChoice, computerChoice);
+    updateScores(playerWin);
+    displayRoundWinner(playerWin, playerChoice, computerChoice);
+}
