@@ -30,5 +30,12 @@ function checkPlayerWin(playerChoice, computerChoice) {
     }
 }
 
+// update the scores
+function updateScores(playerWin) {
+    if (playerWin != null) {
+        playerWin ? playerScore++ : computerScore++; 
+    }
+}
+
 
 
