@@ -1,11 +1,14 @@
 // get a validated player choice
 function getPlayerChoice() {
-    let playerChoice;
-    do {
-        playerChoice = prompt("What's you choice? ").toLowerCase();
+    while (true) {
+        let playerChoice = prompt("Pick: rock, paper, or scissors?");
+        if (
+            playerChoice &&
+            ["rock", "paper", "scissors"].includes(playerChoice).toLowerCase()
+        ) {
+            return playerChoice.toLowerCase();
+        }
     }
-    while (!["rock", "paper", "scissors"].includes(playerChoice));
-    return playerChoice;
 }
 
 // get a random computer choice
