@@ -67,3 +67,16 @@ function startRound() {
     updateScores(playerWin);
     displayRoundWinner(playerWin, playerChoice, computerChoice);
 }
+
+// initialize the game score counters
+let playerScore = 0;
+let computerScore = 0;
+
+// start the entire game
+function startGame() {
+    let roundCounter = 5;
+    while (roundCounter > 0) {
+        startRound();
+        roundCounter--;
+    }
+}
