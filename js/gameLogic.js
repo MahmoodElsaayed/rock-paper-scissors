@@ -23,9 +23,12 @@ function checkPlayerWin(playerChoice, computerChoice) {
         (playerChoice === "paper" && computerChoice === "rock")
     ) {
         return true;
+    } else if (playerChoice === computerChoice) {
+        return null;
     } else {
         return false;
     }
 }
+
 
 
