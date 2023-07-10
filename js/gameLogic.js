@@ -37,14 +37,25 @@ function updateScores(playerWin) {
     }
 }
 
-// display the winner and players' choices after each round
-function displayWinner(playerWin, playerChoice, computerChoice) {
+// display the winner and players' choices after each (round)
+function displayRoundWinner(playerWin, playerChoice, computerChoice) {
     if (playerWin) {
         console.log(`You win! ${playerChoice} beats ${computerChoice}`);
     } else if (playerWin === null) {
         console.log(`It's a tie!`);
     } else {
         console.log(`You lose! ${computerChoice} beats ${playerChoice}`);
+    }
+}
+
+// display the winner after the entire (game)
+function displayGameWinner(playerScore, computerScore) {
+    if (playerScore > computerScore) {
+        console.log("The winner of the game is: Player1!!!");
+    } else if (playerScore === computerScore) {
+        console.log("it's a tie!");
+    } else {
+        console.log("The winner of the game is: CPU1!!!");
     }
 }
 
