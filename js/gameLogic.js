@@ -4,7 +4,7 @@ function getPlayerChoice() {
         let playerChoice = prompt("Pick: rock, paper, or scissors?");
         if (
             playerChoice &&
-            ["rock", "paper", "scissors"].includes(playerChoice).toLowerCase()
+            ["rock", "paper", "scissors"].includes(playerChoice.toLowerCase())
         ) {
             return playerChoice.toLowerCase();
         }
