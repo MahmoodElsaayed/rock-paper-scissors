@@ -1,4 +1,4 @@
-// get validated player choice
+// get a validated player choice
 function getPlayerChoice() {
     let playerChoice;
     do {
@@ -8,12 +8,24 @@ function getPlayerChoice() {
     return playerChoice;
 }
 
-
-// get computer's random choice
+// get a random computer choice
 function getComputerChoice() {
     let choices = ["rock", "paper", "scissors"];
     let randomValidIndex = Math.floor(Math.random() * choices.length);
     return choices[randomValidIndex];
+}
+
+// check if player won
+function checkPlayerWin(playerChoice, computerChoice) {
+    if (
+        (playerChoice === "rock" && computerChoice === "scissors") ||
+        (playerChoice === "scissors" && computerChoice === "paper") ||
+        (playerChoice === "paper" && computerChoice === "rock")
+    ) {
+        return true;
+    } else {
+        return false;
+    }
 }
 
 
