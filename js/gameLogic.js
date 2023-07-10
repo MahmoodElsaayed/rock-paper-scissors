@@ -7,3 +7,13 @@ function getPlayerChoice() {
     while (!["rock", "paper", "scissors"].includes(playerChoice));
     return playerChoice;
 }
+
+
+// get computer's random choice
+function getComputerChoice() {
+    let choices = ["rock", "paper", "scissors"];
+    let randomValidIndex = Math.floor(Math.random() * choices.length);
+    return choices[randomValidIndex];
+}
+
+
