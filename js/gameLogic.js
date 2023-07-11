@@ -82,4 +82,5 @@ function startGame() {
         startRound();
         roundCounter--;
     }
+    displayGameWinner(playerScore, computerScore);
 }
