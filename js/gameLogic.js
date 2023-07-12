@@ -1,4 +1,4 @@
-// get a validated player choice
+// prompt and validate the player's input
 function getPlayerChoice() {
     while (true) {
         let playerChoice = prompt("Pick: rock, paper, or scissors?");
@@ -11,14 +11,14 @@ function getPlayerChoice() {
     }
 }
 
-// get a random computer choice
+// get a random choice
 function getComputerChoice() {
     let choices = ["rock", "paper", "scissors"];
     let randomValidIndex = Math.floor(Math.random() * choices.length);
     return choices[randomValidIndex];
 }
 
-// check if player won
+// check if player won based on the both choices
 function checkPlayerWin(playerChoice, computerChoice) {
     if (
         (playerChoice === "rock" && computerChoice === "scissors") ||
@@ -33,14 +33,14 @@ function checkPlayerWin(playerChoice, computerChoice) {
     }
 }
 
-// update the scores
+// update the scores based on the round's outcome
 function updateScores(playerWin) {
     if (playerWin != null) {
         playerWin ? playerScore++ : computerScore++; 
     }
 }
 
-// display the winner and players' choices after each (round)
+// display the winner and players' choices after each round
 function displayRoundWinner(playerWin, playerChoice, computerChoice) {
     if (playerWin) {
         console.log(`You win! ${playerChoice} beats ${computerChoice}`);
@@ -51,7 +51,7 @@ function displayRoundWinner(playerWin, playerChoice, computerChoice) {
     }
 }
 
-// display the winner after the entire (game)
+// display the winner of the entire game based on both scores
 function displayGameWinner(playerScore, computerScore) {
     if (playerScore > computerScore) {
         console.log("The winner of the game is: Player1!!!");
@@ -75,12 +75,10 @@ function startRound() {
 let playerScore = 0;
 let computerScore = 0;
 
-// start the entire game
+// start multiple rounds of the game and display winner
 function startGame() {
-    let roundCounter = 5;
-    while (roundCounter > 0) {
+    for (let roundsLeft = 5; roundsLeft > 0; roundsLeft--) {
         startRound();
-        roundCounter--;
     }
-    displayGameWinner(playerScore, computerScore);
+    displayGameWinner(playerScore, computerScore); 
 }
