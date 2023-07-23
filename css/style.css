@@ -7,7 +7,7 @@
 
 #container {
     width: 100%;
-    height: 100vh;
+    min-height: 100vh;
     background-image: linear-gradient(to bottom right, rgba(255, 166, 0, 0.7), rgba(255, 255, 0, 0.6));
 }
 
@@ -16,4 +16,52 @@
     text-align: center;
     font-size: 50px;
     font-weight: bold;
+}
+
+.game-display {
+    margin: 100px 0px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 50px;
+}
+
+.player-side,
+.computer-side {
+    flex: 0 1 33%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;  
+    gap: 25px;
+}
+
+.choice-screen {
+    height: 350px;
+    width: 450px;
+    border: 12px solid rgba(255, 217, 0); 
+    border-radius: 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.choice-screen > img {
+    width: 50%;
+    height: auto;
+}
+
+.score-counter {
+    display: flex;
+    align-items: center;
+    gap: 30px;
+}
+
+.score-counter > .circle {
+    height: 50px;
+    width: 50px;
+    background-color: #ffffff;
+    border-radius: 30px;
+    background-image: linear-gradient(to bottom left, rgba(255, 217, 0, 0.4), transparent);
 }
