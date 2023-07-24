@@ -2,7 +2,7 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: 'Courier New', Courier, monospace;
+    font: normal bold 24px 'Courier New', Courier, monospace;
 }
 
 #container {
@@ -35,7 +35,6 @@
     justify-content: center;
     align-items: center;  
     gap: 25px;
-   font: normal bold 24px 'Courier New', Courier, monospace
 }
 
 .choice-screen {
@@ -65,6 +64,10 @@
     background-color: #ffffff;
     border-radius: 30px;
     background-image: linear-gradient(to bottom left, rgba(255, 217, 0, 0.4), transparent);
+}
+
+.round-winner-text {
+    text-align: center;
 }
 
 .options-buttons {
