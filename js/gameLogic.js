@@ -1,84 +1,106 @@
-// prompt and validate the player's input
-function getPlayerChoice() {
-    while (true) {
-        let playerChoice = prompt("Pick: rock, paper, or scissors?");
-        if (
-            playerChoice &&
-            ["rock", "paper", "scissors"].includes(playerChoice.toLowerCase())
-        ) {
-            return playerChoice.toLowerCase();
-        }
-    }
-}
+  // Get references to all the interactive elements
+  const buttons = document.querySelectorAll(".btn");
+  const playerChoiceDisplay = document.querySelector(".player-side .choice-screen img");
+  const computerChoiceDisplay = document.querySelector(".computer-side .choice-screen img");
+  const playerScoreDisplay = document.querySelector(".player-side .score-counter");
+  const computerScoreDisplay = document.querySelector(".computer-side .score-counter");
+  const roundWinnerDisplay = document.querySelector(".round-winner-text");
+  const popupModal = document.querySelector("#popup");
+  const gameWinnerText = document.querySelector("#game-winner-text");
+  const playAgainButton = document.querySelector("#play-again-button");
 
-// get a random choice
-function getComputerChoice() {
+  // Initialize the game score counters
+  let playerScore = 0;
+  let computerScore = 0;
+
+  // Get a random choice
+  function getComputerChoice() {
     let choices = ["rock", "paper", "scissors"];
     let randomValidIndex = Math.floor(Math.random() * choices.length);
     return choices[randomValidIndex];
-}
+  }
 
-// check if player won based on the both choices
-function checkPlayerWin(playerChoice, computerChoice) {
+  // Updates the images of the choice screens according to the picks of both sides
+  function updateChoiceScreens(playerChoice, computerChoice) {
+    playerChoiceDisplay.setAttribute("src", `./assets/${playerChoice}.png`);
+    computerChoiceDisplay.setAttribute("src", `./assets/flipped_${computerChoice}.png`);
+  }
+
+  // Check if player won based on both choices
+  function checkPlayerWin(playerChoice, computerChoice) {
     if (
-        (playerChoice === "rock" && computerChoice === "scissors") ||
-        (playerChoice === "scissors" && computerChoice === "paper") ||
-        (playerChoice === "paper" && computerChoice === "rock")
+      (playerChoice === "rock" && computerChoice === "scissors") ||
+      (playerChoice === "scissors" && computerChoice === "paper") ||
+      (playerChoice === "paper" && computerChoice === "rock")
     ) {
-        return true;
+      return true;
     } else if (playerChoice === computerChoice) {
-        return null;
+      return null; 
     } else {
-        return false;
+      return false; 
     }
-}
+  }
 
-// update the scores based on the round's outcome
-function updateScores(playerWin) {
+  // Update the scores and scores display based on the round's outcome
+  function updateScores(playerWin) {
     if (playerWin != null) {
-        playerWin ? playerScore++ : computerScore++; 
+      if (playerWin) {
+        playerScore++;
+        playerScoreDisplay.textContent = `Score: ${playerScore}`;
+      } else {
+        computerScore++;
+        computerScoreDisplay.textContent = `Score: ${computerScore}`;
+      }
     }
-}
+  }
 
-// display the winner and players' choices after each round
-function displayRoundWinner(playerWin, playerChoice, computerChoice) {
+  // Display the winner and players' choices after each round
+  function displayRoundWinner(playerWin, playerChoice, computerChoice) {
     if (playerWin) {
-        console.log(`You win! ${playerChoice} beats ${computerChoice}`);
+      roundWinnerDisplay.textContent = `You win! ${playerChoice} beats ${computerChoice}`;
     } else if (playerWin === null) {
-        console.log(`It's a tie!`);
+      roundWinnerDisplay.textContent = `It's a tie!`;
     } else {
-        console.log(`You lose! ${computerChoice} beats ${playerChoice}`);
+      roundWinnerDisplay.textContent = `You lose! ${computerChoice} beats ${playerChoice}`;
     }
-}
+  }
 
-// display the winner of the entire game based on both scores
-function displayGameWinner(playerScore, computerScore) {
-    if (playerScore > computerScore) {
-        console.log("The winner of the game is: Player1!!!");
-    } else if (playerScore === computerScore) {
-        console.log("it's a tie!");
+  // Print the game winner when a player reaches 5 points
+  function printGameWinner() {
+    if (playerScore === 5) {
+      gameWinnerText.textContent = "You won!";
     } else {
-        console.log("The winner of the game is: CPU1!!!");
+      gameWinnerText.textContent = "You lost...";
     }
-}
+  }
 
-// start a round of the game
-function startRound() {
-    let playerChoice = getPlayerChoice();
+  // Start a round of the game
+  function startRound(e) {
+    let playerChoice = e.currentTarget.classList[0];
     let computerChoice = getComputerChoice();
+    updateChoiceScreens(playerChoice, computerChoice);
     let playerWin = checkPlayerWin(playerChoice, computerChoice);
     updateScores(playerWin);
     displayRoundWinner(playerWin, playerChoice, computerChoice);
-}
 
-// initialize the game score counters
-let playerScore = 0;
-let computerScore = 0;
+    // Check if the game has ended (one player reached 5 points)
+    if (playerScore >= 5 || computerScore >= 5) {
+      printGameWinner();
+      popupModal.show();
 
-// start multiple rounds of the game and display winner
-function startGame() {
-    for (let roundsLeft = 5; roundsLeft > 0; roundsLeft--) {
-        startRound();
+      // Remove click event listeners to prevent further rounds after game over
+      buttons.forEach((btn) => {
+        btn.removeEventListener("click", startRound);
+      });
     }
-    displayGameWinner(playerScore, computerScore); 
-}
+  }
+
+  // Event listener to refresh the page and start a new game
+  playAgainButton.addEventListener("click", () => {
+    window.location.reload();
+  });
+
+  // Add event listeners to buttons to get the player's choice and start the round
+  buttons.forEach((btn) => {
+    btn.addEventListener("click", startRound);
+  });
