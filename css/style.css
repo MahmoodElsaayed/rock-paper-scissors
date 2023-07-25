@@ -53,17 +53,7 @@
 }
 
 .score-counter {
-    display: flex;
-    align-items: center;
-    gap: 30px;
-}
-
-.score-counter > .circle {
-    height: 50px;
-    width: 50px;
-    background-color: #ffffff;
-    border-radius: 30px;
-    background-image: linear-gradient(to bottom left, rgba(255, 217, 0, 0.4), transparent);
+    text-align: center;
 }
 
 .round-winner-text {
